@@ -16,12 +16,21 @@ function SuperHeroItem({ hero, avengersAssemble }) {
 
     // determine if we should render the on or off duty message
     const onOrOffDuty = () => {
-        if (hero.onDuty) {
-            // need to return JSX
-            return <p>ON DUTY</p>;
-        } else {
-            // need to return JSX
-            return <p>SLEEPING</p>;
+        // if (hero.onDuty) {
+        //     // need to return JSX
+        //     return <p>ON DUTY</p>;
+        // } else {
+        //     // need to return JSX
+        //     return <p>SLEEPING</p>;
+        // }
+
+        switch (hero.onDuty) {
+            case true:
+                return <p>ON DUTY</p>;
+            case false:   
+                return <p>SLEEPING</p>;
+            default:
+                return <p>MIA</p>;
         }
     }
 
@@ -30,7 +39,15 @@ function SuperHeroItem({ hero, avengersAssemble }) {
     return (
         <div className="hero">
             {/* {JSON.stringify(this.props)} */}
-            <h2>{hero.superheroName}</h2>
+            <h2>
+                {/* Logical && Operator */}
+                {hero.onDuty && "👁️ "}
+
+                {hero.superheroName}
+
+                {/* Ternary Operator */}
+                {hero.class === 'psychic' ? " 🧠" : " 🗡️"}
+            </h2>
             <p>Power: {hero.power}</p>
 
             {/* conditionally render the hero's real name */}
@@ -44,16 +61,7 @@ function SuperHeroItem({ hero, avengersAssemble }) {
             <button onClick={toggleMask}>Toggle Alias</button>
             <button onClick={() => avengersAssemble(hero)}>Assemble!</button>
 
-            {/* if true, show the thing */}
-            {/* { this.props.hero.onDuty && <p>ON DUTY</p> } */}
-
-            {/* if/else show one thing or another */}
-            {/* {
-                    this.props.hero.onDuty ? /* if() */
-                // <p>ON DUTY</p> :         /* true */
-                // <p>SLEEPING</p>          /* false */
-                // }*/}
-            }
+            
         </div>
     );
 
